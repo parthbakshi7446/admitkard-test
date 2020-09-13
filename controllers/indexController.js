@@ -28,20 +28,10 @@ module.exports.insertQuestion = async function(req,res){
 
 module.exports.searchQuestion = async function(req,res){
     try{
-        //search based on tags
-        let question = await Question.find({ tag: req.body.search});
+        //search based on tags and query
+        console.log(req.body.search);
+        let question = await Question.find({ $or:[{tag: req.body.search}, {question: req.body.search}]});
         if(question.length==0 ){
-
-            //search based on topic
-            let question2 = await Question.find({ topic: req.body.search});
-            if(question2.length>0){
-                return res.json(200,{
-                    message:"successful, here is your data",
-                    data:{
-                        question:question2
-                    }
-                });
-            }
             return res.json(200,{
                 message:"Nothing found"
             });

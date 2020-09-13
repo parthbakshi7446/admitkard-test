@@ -1,10 +1,17 @@
 This is the API to add the question with topics and tags and search them  on the basis of tags and topics
 
-run
-npm start
-to start the project
+run:
+
+    npm install
+    
+    #to install all dependencies
+    
+    npm start
+    
+    #to start the project
 
 for insert command:
+
     send data as:
         question: string,
         topic: string,
@@ -20,6 +27,7 @@ for insert command:
         failure will return with 500 internal server error and error will be passed
 
 for search command:
+
     send data as:
         search: string
     

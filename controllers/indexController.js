@@ -3,7 +3,7 @@ const Question = require('../models/question');
 
 module.exports.insertQuestion = async function(req,res){
     try{
-        // console.log(req.body);
+        //parsing daata backto JSON
         req.body.tag = JSON.parse(req.body.tag);
         Question.create({
             question:req.body.question,
@@ -16,7 +16,7 @@ module.exports.insertQuestion = async function(req,res){
                     question:question
                 });
             }
-            return res.json(500,{message:"Iternal server error", error:err});
+            return res.json(500,{message:"Internal server error", error:err});
         });
     }catch(e){
         console.log("error in inserting ");
@@ -27,15 +27,14 @@ module.exports.insertQuestion = async function(req,res){
 }
 
 module.exports.searchQuestion = async function(req,res){
-    // console.log(req.body.search);
     try{
+        //search based on tags
         let question = await Question.find({ tag: req.body.search});
-        // console.log(question)
         if(question.length==0 ){
 
             //search based on topic
             let question2 = await Question.find({ topic: req.body.search});
-            if(question2){
+            if(question2.length>0){
                 return res.json(200,{
                     message:"successful, here is your data",
                     data:{

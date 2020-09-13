@@ -5,6 +5,7 @@ npm start
 to start the project
 
 for insert command:
+
     send data as:
         question: string,
         topic: string,
@@ -20,6 +21,7 @@ for insert command:
         failure will return with 500 internal server error and error will be passed
 
 for search command:
+
     send data as:
         search: string
     
